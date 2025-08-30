@@ -1,0 +1,122 @@
+.product-detail {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.back-btn {
+    background: #ff6347;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.back-btn:hover {
+    background: #e5533d;
+}
+
+.product-detail-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.product-detail-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.product-detail-info h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.product-rating img {
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+.product-price {
+    font-size: 28px;
+    color: #ff6347;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.product-description {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.product-category {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.add-to-cart-btn {
+    background: #ff6347;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.add-to-cart-btn:hover {
+    background: #e5533d;
+}
+
+.product-counter {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.product-counter img {
+    width: 30px;
+    cursor: pointer;
+}
+
+.product-counter p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.product-detail-loading {
+    text-align: center;
+    padding: 50px;
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .product-detail-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .product-detail-info h1 {
+        font-size: 24px;
+    }
+    
+    .product-price {
+        font-size: 22px;
+    }
+}
