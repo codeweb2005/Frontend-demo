@@ -21,11 +21,11 @@ const FoodItem = ({ image, name, price, desc , id }) => {
                 </div>
                 <p className="food-item-desc">{desc}</p>
                 <p className="food-item-price">{currency}{price}</p>
-                {!cartItems[id]
+                {!cartItems || !cartItems[id]
                 ?<button className='add-to-cart-btn' onClick={() => addToCart(id)}>Add to Cart</button>
                 :<div className="food-item-counter">
                         <img src={assets.remove_icon_red} onClick={()=>removeFromCart(id)} alt="" />
-                        <p>{cartItems[id]}</p>
+                        <p>{cartItems ? cartItems[id] : 0}</p>
                         <img src={assets.add_icon_green} onClick={()=>addToCart(id)} alt="" />
                     </div>
                 }

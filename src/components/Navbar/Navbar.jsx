@@ -40,25 +40,25 @@ const Navbar = ({ setShowLogin }) => {
         <div className='navbar-cart-container'>
           <Link to='/cart' className='navbar-search-icon'>
             <i className="fas fa-shopping-cart navbar-icon"></i>
-            {Object.values(cartItems).reduce((total, quantity) => total + quantity, 0) > 0 && (
+            {cartItems && Object.values(cartItems).reduce((total, quantity) => total + quantity, 0) > 0 && (
               <div className="cart-count">{Object.values(cartItems).reduce((total, quantity) => total + quantity, 0)}</div>
             )}
           </Link>
           
           <div className='cart-preview'>
             <h4>Cart Items</h4>
-            {Object.keys(cartItems).length > 0 ? (
+            {cartItems && Object.keys(cartItems).length > 0 ? (
               <div className='cart-preview-items'>
-                {food_list.filter(item => cartItems[item._id] > 0).slice(0, 3).map(item => (
+                {food_list && food_list.filter(item => cartItems[item._id] > 0).slice(0, 3).map(item => (
                   <div key={item._id} className='cart-preview-item'>
-                    <img src={url+"/images/"+item.image} alt={item.name} />
+                    <img src={item.image.startsWith('data:') ? item.image : url+"/images/"+item.image} alt={item.name} />
                     <div className='cart-preview-info'>
                       <p>{item.name}</p>
                       <span>{cartItems[item._id]} x {currency}{item.price}</span>
                     </div>
                   </div>
                 ))}
-                {Object.keys(cartItems).filter(id => cartItems[id] > 0).length > 3 && (
+                {cartItems && Object.keys(cartItems).filter(id => cartItems[id] > 0).length > 3 && (
                   <p className='more-items'>+{Object.keys(cartItems).filter(id => cartItems[id] > 0).length - 3} more items</p>
                 )}
                 <div className='cart-preview-total'>

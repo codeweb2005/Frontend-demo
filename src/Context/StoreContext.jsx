@@ -5,7 +5,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
 
-    const url = import.meta.env.VITE_API_URL || "http://localhost:4000"
+    const url = import.meta.env.VITE_API_URL || "https://eksdevops2.daohaithuan.click"
     const [food_list, setFoodList] = useState([]);
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("")
@@ -48,13 +48,34 @@ const StoreContextProvider = (props) => {
     }
 
     const fetchFoodList = async () => {
-        const response = await axios.get(url + "/api/device/list");
-        setFoodList(response.data.data)
+        try {
+            console.log('Fetching from:', url + "/api/device/list");
+            const response = await axios.get(url + "/api/device/list", {
+                headers: {
+                    'Cache-Control': 'no-cache',
+                    'Pragma': 'no-cache'
+                }
+            });
+            console.log('API Response:', response.data);
+            if (response.data.success && response.data.data) {
+                setFoodList(response.data.data);
+            } else {
+                console.error('API returned no data or failed:', response.data);
+            }
+        } catch (error) {
+            console.error('Error fetching device list:', error);
+            console.error('Error details:', error.response?.data || error.message);
+        }
     }
 
     const loadCartData = async (token) => {
-        const response = await axios.post(url + "/api/cart/get", {}, { headers: token });
-        setCartItems(response.data.cartData);
+        try {
+            const response = await axios.post(url + "/api/cart/get", {}, { headers: token });
+            setCartItems(response.data.cartData || {});
+        } catch (error) {
+            console.error('Error loading cart:', error);
+            setCartItems({});
+        }
     }
 
     useEffect(() => {
